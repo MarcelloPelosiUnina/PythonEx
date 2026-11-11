@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Python Guided Lab</title>
+  <meta name="description" content="Step-by-step guided solutions for Exercises 3 and 4 of the Python programming and data analysis workbook.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%231f4e8c'/%3E%3Ctext x='16' y='23' font-family='Arial' font-size='18' font-weight='700' fill='white' text-anchor='middle'%3EPy%3C/text%3E%3C/svg%3E">
+  <script>try{var d=document.documentElement,t=localStorage.getItem('py-theme'),s=localStorage.getItem('py-scale');if(t)d.dataset.theme=t;if(s)d.style.setProperty('--scale',s)}catch(e){}</script>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/exercises.css">
+  <link rel="stylesheet" href="css/guide.css">
+</head>
+<body>
+  <header class="topbar" data-page="home"></header>
+
+  <main class="page page-narrow">
+    <section class="hero">
+      <h1>Python data pipelines, step by step</h1>
+      <p class="lead">Guided solutions for Exercises 3 and 4 of the workbook. Each exercise is split into its four steps; each step has short interactive exercises, a checkpoint with the code so far and the expected output, and the next step unlocks when you finish.</p>
+    </section>
+
+    <ol class="toc">
+      <li>
+        <a href="exercise3.html" data-key="EX3">
+          <span class="n">3</span>
+          <h2>Weather Station Sensor Telemetry Pipeline</h2>
+          <p>Parse telemetry strings, impute missing values with NumPy, engineer a heat index in Pandas and write a weather bulletin.</p>
+          <span class="count"></span>
+          <span class="meta"><span class="chip">Strings</span><span class="chip">NaN &amp; np.where</span><span class="chip">DataFrame</span><span class="chip">GroupBy</span></span>
+        </a>
+      </li>
+      <li>
+        <a href="exercise4.html" data-key="EX4">
+          <span class="n">4</span>
+          <h2>E-Commerce Sales &amp; Inventory Intelligence System</h2>
+          <p>Validate raw orders with an error log, price them with tiered discounts and VAT, build pivot tables and an executive report.</p>
+          <span class="count"></span>
+          <span class="meta"><span class="chip">File I/O</span><span class="chip">Nested np.where</span><span class="chip">Percentiles</span><span class="chip">Pivot tables</span></span>
+        </a>
+      </li>
+    </ol>
+
+    <p style="margin-top:22px;color:var(--muted);font-size:.92rem">Your answers are saved in this browser only. Every exercise page has a <b>Clear answers</b> button.</p>
+  </main>
+
+  <script src="js/core.js"></script>
+  <script src="js/engine.js"></script>
+  <script src="js/data-ex3.js"></script>
+  <script src="js/data-ex4.js"></script>
+  <script>
+    document.querySelectorAll('.toc a[data-key]').forEach(function (link) {
+      var p = Engine.progress(window[link.dataset.key]);
+      var pct = p.total ? Math.round(100 * p.done / p.total) : 0;
+      link.querySelector('.count').innerHTML = (p.done ? p.done + ' of ' + p.total + ' done' : p.total + ' exercises')
+        + '<span class="bar"><span style="width:' + pct + '%"></span></span>';
+    });
+  </script>
+</body>
+</html>

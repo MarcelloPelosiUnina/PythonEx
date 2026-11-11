@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>E-Commerce Sales Pipeline</title>
+  <meta name="description" content="Guided, step-by-step solution of Exercise 4: e-commerce sales and inventory intelligence system with file I/O, NumPy and Pandas.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%231f4e8c'/%3E%3Ctext x='16' y='23' font-family='Arial' font-size='18' font-weight='700' fill='white' text-anchor='middle'%3EPy%3C/text%3E%3C/svg%3E">
+  <script>try{var d=document.documentElement,t=localStorage.getItem('py-theme'),s=localStorage.getItem('py-scale');if(t)d.dataset.theme=t;if(s)d.style.setProperty('--scale',s)}catch(e){}</script>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/exercises.css">
+  <link rel="stylesheet" href="css/guide.css">
+</head>
+<body>
+  <header class="topbar" data-page="ex4"></header>
+
+  <main class="page page-narrow">
+    <section class="hero">
+      <span class="eyebrow">Exercise 4 · Level 4: Capstone</span>
+      <h1>E-Commerce Sales &amp; Inventory Intelligence System</h1>
+      <p class="lead">The capstone brings together everything: strings, loops, files, NumPy and Pandas. Work through the four steps in order; every checkpoint shows the program so far and the output you should get.</p>
+    </section>
+
+    <section class="card scenario">
+      <h2>Scenario</h2>
+      <p>An online retailer receives a nightly batch of raw order lines from several European regions. Some lines are corrupted or contain invalid quantities. Your task is to ingest and validate the raw file, quarantine bad records in an error log, calculate tiered volume discounts and VAT with NumPy, build category/region pivot tables in Pandas and export an executive report.</p>
+    </section>
+
+    <ol class="pipeline" aria-label="The four steps of the pipeline">
+      <li><b>Ingest</b>Validate, parse SKUs, log errors<span class="io">8 lines → 6 orders + 2 errors</span></li>
+      <li><b>NumPy</b>Gross, tiered discount, VAT, percentiles<span class="io">orders → arrays</span></li>
+      <li><b>Pandas</b>KPI table and pivot table<span class="io">arrays → df</span></li>
+      <li><b>Report</b>CSV exports and executive report<span class="io">df → 3 files</span></li>
+    </ol>
+
+    <details class="theory" open>
+      <summary>Starter data</summary>
+      <div class="theory-body" id="starter"></div>
+    </details>
+
+    <nav class="stepper" id="stepper" aria-label="Progress through the steps"></nav>
+    <div id="steps"></div>
+  </main>
+
+  <script src="js/core.js"></script>
+  <script src="js/engine.js"></script>
+  <script src="js/data-ex4.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      document.getElementById('starter').appendChild(App.codeWithTools(window.EX4.starter, { label: 'Copy this list into a new file to start' }));
+      Engine.guide({
+        data: window.EX4,
+        root: document.getElementById('steps'),
+        stepper: document.getElementById('stepper'),
+        next: { href: 'index.html', label: 'Back to the index', text: 'You have completed the workbook. Try changing the data (a new region, a broken price) and check that the pipeline still behaves.' }
+      });
+    });
+  </script>
+</body>
+</html>

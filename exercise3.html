@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Weather Sensor Pipeline</title>
+  <meta name="description" content="Guided, step-by-step solution of Exercise 3: weather station telemetry pipeline with strings, NumPy and Pandas.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%231f4e8c'/%3E%3Ctext x='16' y='23' font-family='Arial' font-size='18' font-weight='700' fill='white' text-anchor='middle'%3EPy%3C/text%3E%3C/svg%3E">
+  <script>try{var d=document.documentElement,t=localStorage.getItem('py-theme'),s=localStorage.getItem('py-scale');if(t)d.dataset.theme=t;if(s)d.style.setProperty('--scale',s)}catch(e){}</script>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/exercises.css">
+  <link rel="stylesheet" href="css/guide.css">
+</head>
+<body>
+  <header class="topbar" data-page="ex3"></header>
+
+  <main class="page page-narrow">
+    <section class="hero">
+      <span class="eyebrow">Exercise 3 · Level 3: Intermediate</span>
+      <h1>Weather Station Sensor Telemetry Pipeline</h1>
+      <p class="lead">A guided walk through the solution, one step at a time. In each step you first answer small exercises that build the code piece by piece, then you compare your program with the checkpoint.</p>
+    </section>
+
+    <section class="card scenario">
+      <h2>Scenario</h2>
+      <p>Meteorological stations transmit compact telemetry strings containing station IDs, dates, temperatures in Celsius and humidity percentages, including occasional sensor errors (<code>ERR</code>). Your task is to parse these codes, impute missing data and convert units with NumPy, compute a heat discomfort index in Pandas and generate a weather alert bulletin file.</p>
+    </section>
+
+    <ol class="pipeline" aria-label="The four steps of the pipeline">
+      <li><b>Parse strings</b>Split, clean, flag <code>ERR</code> as NaN<span class="io">9 strings → 4 lists</span></li>
+      <li><b>NumPy</b>Impute NaN, °C → °F, alert flags<span class="io">lists → arrays</span></li>
+      <li><b>Pandas</b>DataFrame, heat index, sorting<span class="io">arrays → df</span></li>
+      <li><b>Report</b>GroupBy summary, CSV, bulletin<span class="io">df → 2 files</span></li>
+    </ol>
+
+    <details class="theory" open>
+      <summary>Starter data</summary>
+      <div class="theory-body" id="starter"></div>
+    </details>
+
+    <nav class="stepper" id="stepper" aria-label="Progress through the steps"></nav>
+    <div id="steps"></div>
+  </main>
+
+  <script src="js/core.js"></script>
+  <script src="js/engine.js"></script>
+  <script src="js/data-ex3.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      document.getElementById('starter').appendChild(App.codeWithTools(window.EX3.starter, { label: 'Copy this list into a new file to start' }));
+      Engine.guide({
+        data: window.EX3,
+        root: document.getElementById('steps'),
+        stepper: document.getElementById('stepper'),
+        next: { href: 'exercise4.html', label: 'Exercise 4', text: 'Ready for the capstone? Exercise 4 combines everything in an e-commerce pipeline with error quarantine and pivot tables.' }
+      });
+    });
+  </script>
+</body>
+</html>
