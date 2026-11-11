@@ -1,0 +1,174 @@
+/* =========================================================
+   Python guided lab — guided session layout
+   (scenario, pipeline overview, stepper, steps, checkpoints)
+   ========================================================= */
+
+/* ---------- Scenario and pipeline overview ---------- */
+.scenario { border-left: 3px solid var(--accent); }
+.scenario h2 { font-size: 1rem; margin-bottom: .4em; }
+.scenario p:last-child { margin-bottom: 0; }
+
+.pipeline {
+  list-style: none; margin: 18px 0 0; padding: 0;
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; counter-reset: pipe;
+}
+.pipeline li {
+  position: relative; padding: 10px 12px; border: 1px solid var(--border); border-radius: var(--radius);
+  background: var(--surface); font-size: .88rem; color: var(--muted); min-width: 0;
+}
+.pipeline li b { display: block; color: var(--text); font-size: .92rem; margin-bottom: 2px; }
+.pipeline li::before {
+  counter-increment: pipe; content: "Step " counter(pipe);
+  display: block; font-size: .72rem; letter-spacing: .05em; text-transform: uppercase;
+  color: var(--accent); font-weight: 700;
+}
+.pipeline li:not(:last-child)::after {
+  content: "\2192"; position: absolute; right: -7px; top: 50%; transform: translate(50%, -50%);
+  color: var(--muted); font-size: .9rem;
+}
+.pipeline .io {
+  display: block; margin-top: 6px; font-family: var(--mono); font-size: .76rem;
+  color: var(--muted); overflow-wrap: anywhere;
+}
+
+/* ---------- Stepper (sticky progress bar) ---------- */
+.stepper {
+  position: sticky; top: var(--topbar-h, 49px); z-index: 30;
+  margin: 24px 0 8px; padding: 10px 0 8px; background: var(--bg);
+  border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+}
+.stepper-inner { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.stepper a.pill {
+  display: inline-flex; align-items: center; gap: 8px; padding: 4px 10px 4px 5px;
+  border: 1px solid var(--border); border-radius: 999px; background: var(--surface);
+  text-decoration: none; color: var(--muted); font-size: .85rem; white-space: nowrap;
+}
+.stepper a.pill:hover { border-color: var(--accent); color: var(--text); }
+.stepper .dot {
+  width: 22px; height: 22px; border-radius: 50%; display: inline-grid; place-items: center;
+  font-size: .75rem; font-weight: 700; background: var(--surface-2); color: var(--muted);
+  border: 1px solid var(--border);
+}
+.stepper .cnt { font-variant-numeric: tabular-nums; }
+.stepper a.pill.current { border-color: var(--accent); color: var(--text); }
+.stepper a.pill.current .dot { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+.stepper a.pill.done .dot { background: var(--ok); border-color: var(--ok); color: var(--surface); }
+.stepper a.pill.locked { opacity: .6; }
+.stepper .reset { margin-left: auto; }
+.stepper .bar { height: 3px; background: var(--surface-2); border-radius: 2px; margin-top: 8px; overflow: hidden; }
+.stepper .bar span { display: block; height: 100%; width: 0; background: var(--ok); transition: width .3s; }
+
+/* ---------- Step section ---------- */
+.step { margin-top: 40px; scroll-margin-top: 120px; }
+.step-head { display: grid; gap: 4px; padding-bottom: 10px; border-bottom: 2px solid var(--accent); }
+.step-head .eyebrow {
+  margin: 0; color: var(--accent); font-weight: 700; letter-spacing: .05em;
+  text-transform: uppercase; font-size: .78rem;
+}
+.step-head h2 { margin: 0; font-size: 1.35rem; }
+.chips { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 4px; }
+.chip {
+  font-size: .76rem; padding: 2px 9px; border-radius: 999px;
+  background: var(--accent-soft); color: var(--accent);
+}
+.step-goal { margin: 14px 0 0; }
+
+.tasks { margin: 14px 0 0; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); }
+.tasks > summary {
+  cursor: pointer; list-style: none; padding: 10px 16px; font-weight: 650;
+  display: flex; gap: 8px; align-items: center;
+}
+.tasks > summary::-webkit-details-marker { display: none; }
+.tasks > summary::after { content: "\25B8"; margin-left: auto; color: var(--muted); }
+.tasks[open] > summary::after { content: "\25BE"; }
+.tasks ol { margin: 0; padding: 0 16px 14px 2.6em; }
+.tasks li { margin: .3em 0; }
+
+.step details.theory { margin: 12px 0 0; }
+.step .ex-list { margin-top: 18px; }
+
+/* locked step */
+.step-lock {
+  margin-top: 14px; padding: 16px 20px; border: 1px dashed var(--border); border-radius: var(--radius);
+  display: flex; gap: 14px; align-items: center; flex-wrap: wrap; color: var(--muted); background: var(--surface);
+}
+.step-lock svg { width: 20px; height: 20px; flex: 0 0 auto; }
+.step-lock p { margin: 0; flex: 1 1 260px; }
+.step.is-locked .step-body { display: none; }
+.step:not(.is-locked) .step-lock { display: none; }
+
+/* ---------- Checkpoint ---------- */
+.checkpoint {
+  margin-top: 22px; border: 1px solid var(--border); border-radius: var(--radius);
+  background: var(--surface); border-top: 3px solid var(--ok);
+}
+.checkpoint-head { padding: 12px 18px 0; }
+.checkpoint-head h3 { margin: 0 0 4px; }
+.checkpoint-head .flag {
+  display: block; font-size: .72rem; letter-spacing: .05em; text-transform: uppercase;
+  color: var(--ok); font-weight: 700; margin-bottom: 2px;
+}
+.checkpoint-head p { margin: 0; color: var(--muted); font-size: .94rem; }
+.checkpoint-body { padding: 4px 18px 16px; }
+.checkpoint-wait {
+  padding: 10px 18px 16px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap;
+  color: var(--muted); font-size: .94rem;
+}
+.checkpoint-wait p { margin: 0; flex: 1 1 240px; }
+.checkpoint.is-closed .checkpoint-body { display: none; }
+.checkpoint:not(.is-closed) .checkpoint-wait { display: none; }
+.checkpoint .note {
+  font-size: .94rem; margin: 14px 0 0; padding: 8px 12px;
+  background: var(--surface-2); border-left: 3px solid var(--accent);
+}
+
+/* code block with a toolbar (copy / download) */
+.code-tools { display: flex; gap: 6px; justify-content: flex-end; flex-wrap: wrap; margin-top: 12px; align-items: center; }
+.code-tools .label { margin-right: auto; font-size: .84rem; color: var(--text); font-weight: 600; }
+.code-tools .btn { padding: 3px 10px; font-size: .8rem; }
+.code-tools + .code, .code-tools + .console { margin-top: 4px; }
+
+.console .out {
+  margin: 0; padding: 8px 12px; white-space: pre; overflow-x: auto;
+  font: inherit; color: var(--code-text); line-height: 1.5;
+}
+
+.so-far { margin-top: 8px; }
+.so-far > summary { cursor: pointer; font-size: .88rem; color: var(--accent); padding: 4px 0; }
+
+/* ---------- Final solution / produced files ---------- */
+.final { margin-top: 48px; scroll-margin-top: 120px; }
+.final-head { padding-bottom: 10px; border-bottom: 2px solid var(--ok); }
+.final-head .eyebrow { color: var(--ok); font-weight: 700; letter-spacing: .05em; text-transform: uppercase; font-size: .78rem; }
+.final-head h2 { margin: 0; font-size: 1.35rem; }
+.file > summary { font-family: var(--mono); font-size: .9rem; }
+.file .console { margin: 0 0 4px; }
+.run-box { margin-top: 16px; }
+.run-box ol { margin: 6px 0 0; padding-left: 1.4em; }
+.run-box li { margin: .3em 0; }
+
+.next-link {
+  margin-top: 30px; padding: 14px 18px; border: 1px solid var(--border); border-radius: var(--radius);
+  background: var(--surface); display: flex; gap: 12px; align-items: center; flex-wrap: wrap;
+}
+.next-link p { margin: 0; flex: 1 1 240px; }
+
+/* ---------- Home cards ---------- */
+.toc .meta { grid-column: 2; display: flex; gap: 6px; flex-wrap: wrap; margin-top: 6px; }
+.toc .count .bar { display: block; width: 120px; height: 4px; background: var(--surface-2); border-radius: 2px; margin-top: 6px; overflow: hidden; }
+.toc .count .bar span { display: block; height: 100%; background: var(--ok); }
+
+@media (max-width: 760px) {
+  .pipeline { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pipeline li:nth-child(2)::after { display: none; }
+  .stepper { position: static; }
+  .stepper .lbl { display: none; }
+}
+@media (max-width: 420px) {
+  .pipeline { grid-template-columns: minmax(0, 1fr); }
+  .pipeline li::after { display: none; }
+}
+@media print {
+  .stepper, .step-lock, .checkpoint-wait, .code-tools { display: none !important; }
+  .step.is-locked .step-body, .checkpoint.is-closed .checkpoint-body { display: block !important; }
+}
